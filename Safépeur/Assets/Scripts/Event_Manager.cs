@@ -16,6 +16,7 @@ public class Event_Manager : MonoBehaviour
   [Header("(Attention)Dangers")] 
   public Porte porte;
   public TV TV;
+  public Fenêtre fenetre;
 
   [Header("Prochain danger")]
   public float prochainDanger;
@@ -30,6 +31,10 @@ public class Event_Manager : MonoBehaviour
   public float TVLimite2 = 1.25f;
   public float TVLimite22 = 1;
   public float TVLimite222 = 0.75f;
+
+  [Header("DifficultéFenêtre")] 
+  public float dureeFenetre1 = 3f;
+  public float dureeFenetre2 = 9f;
   
   
   
@@ -66,7 +71,12 @@ public class Event_Manager : MonoBehaviour
         {
             TV.BugTV(TVLimite1, TVLimite2);
         }
-        
+
+        if (fenetre.openingFenetre)
+        {
+            fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+        }
+
         // Plus la difficulté est haute, plus le timer va vite et donc plus les dangers arrivent rapidement
         if (timerProchainDanger < prochainDanger)
         {
@@ -89,9 +99,9 @@ public class Event_Manager : MonoBehaviour
         {
             porte.Ouverture();
         }
-        else if (randomNumber < -40)
+        else if (randomNumber < 400)
         {
-            Event_Fenêtre();
+            fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
         }
         else if (randomNumber < -80)
         {
