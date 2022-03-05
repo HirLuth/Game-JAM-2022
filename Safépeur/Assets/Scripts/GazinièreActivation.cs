@@ -12,6 +12,7 @@ public class GazinièreActivation : MonoBehaviour
     public float timePerStep;
     public float numberOfStates = 3;
     public float timerGaziniere = 0;
+    public Event_Manager em;
     
     public bool gazinièreOn;
     public float timeToDo = 10;
@@ -58,7 +59,7 @@ public class GazinièreActivation : MonoBehaviour
 
         if (gazinièreState == numberOfStates + 1)
         {
-            Debug.Log("tu es mort");
+            em.GameOver();
             gazinièreOn = false;
         }
         if (playerDistance < 3)
