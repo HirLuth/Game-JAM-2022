@@ -157,7 +157,6 @@ public class Event_Manager : MonoBehaviour
         else
         {
             TV.spriteActuel = 0;
-            TV.timerTV = 0;
         }
     }
 

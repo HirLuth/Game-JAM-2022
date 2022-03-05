@@ -10,7 +10,7 @@ public class AttentionTV : MonoBehaviour
     
     void Update()
     {
-        if (tv.dontChange == false)
+        if (tv.spriteActuel != 4)
         {
             sr.enabled = true;
         }

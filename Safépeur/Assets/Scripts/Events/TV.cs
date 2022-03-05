@@ -39,7 +39,8 @@ public class TV : MonoBehaviour
     [Header("NewGeneration")] 
     public Color red;
     public Color originelle;
-    public Light2D light; 
+    public Light2D light;
+    public float variance = 0;
     
     
     private void Update()
@@ -138,10 +139,14 @@ public class TV : MonoBehaviour
             // Si c'est la chaine des télétubbies
             if (spriteActuel == 4 && timerTV > 0)
             {
-                timerTV -= Time.deltaTime ;
+                timerTV -= Time.deltaTime * 3 ;
                 dontChange = true;
             }
         }
+
+        variance = timerTV / limitTimerTV;
+        light.color = Color.Lerp(originelle, red, variance);
+        light.intensity = ((variance * 1.5f) + 1);
     }
 
     private void OnTriggerStay2D(Collider2D other)
