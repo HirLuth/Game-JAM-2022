@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class TV : MonoBehaviour
@@ -35,6 +36,12 @@ public class TV : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    [Header("NewGeneration")] 
+    public Color red;
+    public Color originelle;
+    public Light2D light; 
+    
+    
     private void Update()
     {
         // Si le perso est suffisamment proche pour actionner la TV
@@ -87,6 +94,7 @@ public class TV : MonoBehaviour
             }
         }
         
+        
         TVBugs = true;
         dontChange = false;
         
@@ -94,7 +102,6 @@ public class TV : MonoBehaviour
         if (Input.GetKeyDown(interaction) && illumine == true)
         {
             retenue = spriteActuel;
-            timerTV = 0;
             while (spriteActuel == retenue)
             {
                 spriteActuel = Random.Range(1, 5);
@@ -113,23 +120,25 @@ public class TV : MonoBehaviour
             }
         }
         
+        
         // Quand c'est pas le grésillement
         else if (spriteActuel >= 0)
         {
-            timerTV += Time.deltaTime;
-            
+
             // Si c'est une des mauvaises chaînes
             if (spriteActuel < 4)
             {
-                if (limitTimerTV2 < timerTV || dontChange == true)
+                timerTV += Time.deltaTime * 2;
+                if (limitTimerTV < timerTV || dontChange == true)
                 {
                     manager.GameOver();
                 }
             }
 
             // Si c'est la chaine des télétubbies
-            if (spriteActuel == 4)
+            if (spriteActuel == 4 && timerTV > 0)
             {
+                timerTV -= Time.deltaTime ;
                 dontChange = true;
             }
         }
