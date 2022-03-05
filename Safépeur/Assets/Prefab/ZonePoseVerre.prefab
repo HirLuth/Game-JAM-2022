@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5965443708983712804}
   - component: {fileID: 5965443708983712807}
+  - component: {fileID: 4180267233621190325}
   m_Layer: 0
   m_Name: ZonePoseVerre
   m_TagString: Untagged
@@ -82,3 +83,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4180267233621190325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5965443708983712806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b302ae20c3988ac44bc99a173e399bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabVerre: {fileID: 0}
+  timerFlacFilling: 0
+  flacState: 0
+  timeToFill: 10
+  timePerStep: 0
+  numberOfStates: 5
