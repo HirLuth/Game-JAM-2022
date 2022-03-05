@@ -29,7 +29,7 @@ public class TV : MonoBehaviour
     public Sprite bon2;
     public int spriteActuel = 4;
     private bool quitFirstChanel;
-    private bool dontChange;
+    public bool dontChange = true;
     private int retenue;
 
     public SpriteRenderer spriteRenderer;
@@ -90,6 +90,7 @@ public class TV : MonoBehaviour
     public void BugTV(float limitTimerTV, float limitTimerTV2)
     {
         TVBugs = true;
+        dontChange = false;
         
         // Quand le perso appuie pour changer de chaîne
         if (Input.GetKeyDown(interaction))

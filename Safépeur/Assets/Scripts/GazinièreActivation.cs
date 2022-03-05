@@ -56,7 +56,7 @@ public class GazinièreActivation : MonoBehaviour
             timerGaziniere = 0;
         }
 
-        if (gazinièreState == numberOfStates)
+        if (gazinièreState == numberOfStates + 1)
         {
             Debug.Log("tu es mort");
             gazinièreOn = false;
