@@ -155,7 +155,6 @@ public class Event_Manager : MonoBehaviour
     {
         timerTemps.SetActive(false);
         Screamer.SetActive(true);
-        Debug.Log("gameover");
         Time.timeScale = 0;
         textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
         UIGameOver.SetActive(true);

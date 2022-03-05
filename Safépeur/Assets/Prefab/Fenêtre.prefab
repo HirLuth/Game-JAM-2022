@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,6 +144,8 @@ GameObject:
   - component: {fileID: 5128580504846256492}
   - component: {fileID: 482619774}
   - component: {fileID: 2006543530}
+  - component: {fileID: 4092738617921514523}
+  - component: {fileID: 2694646070420572216}
   m_Layer: 0
   m_Name: "Fen\xEAtre"
   m_TagString: Untagged
@@ -185,7 +187,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -265,6 +267,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffbfb1d86b8149f48bd9894c358c796d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "timerFen\xEAtre": 0
+  openingFenetre: 0
+  canDie: 0
+  spriteRenderer: {fileID: 5128580504846256493}
+  fenetreNormale: {fileID: 21300000, guid: c00e2a2dd4656a5498e1a31346ba4c33, type: 3}
+  "fenetreFerm\xE9e": {fileID: 21300000, guid: 52887f7ab23dcaa47b133f00c86a9060, type: 3}
+  fenetreAttentionDanger: {fileID: 21300000, guid: 97405457476304f4aba3921af4d52ff5, type: 3}
+--- !u!114 &4092738617921514523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5128580504846256495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbfb1d86b8149f48bd9894c358c796d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "timerFen\xEAtre": 0
+  openingFenetre: 0
+  canDie: 0
+  spriteRenderer: {fileID: 5128580504846256493}
+  fenetreNormale: {fileID: 21300000, guid: c00e2a2dd4656a5498e1a31346ba4c33, type: 3}
+  "fenetreFerm\xE9e": {fileID: 21300000, guid: 52887f7ab23dcaa47b133f00c86a9060, type: 3}
+  fenetreAttentionDanger: {fileID: 21300000, guid: 97405457476304f4aba3921af4d52ff5, type: 3}
+--- !u!114 &2694646070420572216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5128580504846256495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93250d45d83e935409054af213353f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   "timerFen\xEAtre": 0
