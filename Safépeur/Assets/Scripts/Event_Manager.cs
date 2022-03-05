@@ -13,13 +13,24 @@ public class Event_Manager : MonoBehaviour
   //  public bool Event_Télé;   //5
   public float TimerDifficulty;
 
-  [Header("Dangers")] 
+  [Header("(Attention)Dangers")] 
   public Porte porte;
+  public TV TV;
 
   [Header("Prochain danger")]
   public float prochainDanger;
   public float timerProchainDanger;
   private float difficulté = 1;
+
+
+  [Header("DifficultéTV")] 
+  public float TVLimite1 = 10;
+  public float TVLimite11 = 9;
+  public float TVLimite111 = 8;
+  public float TVLimite2 = 1.25f;
+  public float TVLimite22 = 1;
+  public float TVLimite222 = 0.75f;
+  
   
   
   
@@ -44,9 +55,16 @@ public class Event_Manager : MonoBehaviour
             difficulté = 1.2f;
         }
 
+        // Si l'évènement de la porte est en cours
         if (porte.ouverturePorte)
         {
             porte.Ouverture();
+        }
+        
+        // Si l'évènement de la TV est en cours (toujours actif)
+        if (TV.TVBugs)
+        {
+            TV.BugTV(TVLimite1, TVLimite2);
         }
         
         // Plus la difficulté est haute, plus le timer va vite et donc plus les dangers arrivent rapidement
@@ -67,21 +85,23 @@ public class Event_Manager : MonoBehaviour
         
         float randomNumber = Random.Range(1,100);
         
-        if (randomNumber < 200)
+        if (randomNumber < -20)
         {
             porte.Ouverture();
         }
-        else if (randomNumber < 40)
+        else if (randomNumber < -40)
         {
             Event_Fenêtre();
         }
-        else if (randomNumber < 80)
+        else if (randomNumber < -80)
         {
             Event_Feu();
         }
         else
         {
-            Event_Télé();
+            TV.spriteActuel = 0;
+            TV.timerTV = 0;
+            TV.BugTV(TVLimite1, TVLimite2);
         }
     }
     
