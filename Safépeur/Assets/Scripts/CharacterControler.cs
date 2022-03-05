@@ -24,6 +24,8 @@ public class CharacterControler : MonoBehaviour
     public GameObject solPremierEtage;
     private KeyCode GoUp = KeyCode.UpArrow;
     private KeyCode GoDown = KeyCode.DownArrow;
+    public bool IsWalking2;
+    public Animator anim;
 
     void Update()
     {
@@ -37,11 +39,34 @@ public class CharacterControler : MonoBehaviour
         {
             MoveCharacter();
         }
+
+        if (rb.velocity.x != 0)
+        {
+            IsWalking2 = true;
+        }
+        else
+        {
+            IsWalking2 = false;   
+        }
+        anim.SetBool("IsWalking",IsWalking2);
+
+        if (rb.velocity.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0,180,0);
+        }
+            
+        if (rb.velocity.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0,0,0);
+        }
     }
+    
+    
     
     void MoveCharacter()
     {
         rb.velocity = new Vector2(speed * direction, 0);
+        
     }
 
     void Echelle()
