@@ -40,18 +40,22 @@ public class Event_Manager : MonoBehaviour
   public float gaziniereDuree = 15f;
 
 
-  //[Header("UI")] 
-  //public TextMeshProUGUI textGameOver;
-  //public GameObject UIGameOver;
+  [Header("UI")] 
+  public TextMeshProUGUI textGameOver;
+  public GameObject UIGameOver;
+  public GameObject Screamer;
+  public float timerScreamer;
+  public int timerMaxScreamer;
+  public GameObject timerTemps;
 
 
 
   void Start()
     {
-        //prochainDanger = Random.Range(1, 100);
         Event_Fuite();
-        //UIGameOver.SetActive(false);
+        UIGameOver.SetActive(false);
         Time.timeScale = 1;
+        Screamer.SetActive(false);
     }
 
 
@@ -113,6 +117,8 @@ public class Event_Manager : MonoBehaviour
         {
             ChoixEvent();
         }
+        
+        Debug.Log(Time.deltaTime);
     }
 
     void ChoixEvent()
@@ -154,11 +160,18 @@ public class Event_Manager : MonoBehaviour
     }
 
 
-    void GameOver()
+    public void GameOver()
     {
-        Time.timeScale = 0;
-        //textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
-        //UIGameOver.SetActive(true);
+        timerTemps.SetActive(false);
+        Screamer.SetActive(true);
+      //  timerScreamer += Time.deltaTime;
+      //  if (timerScreamer >= timerMaxScreamer)
+      //  {
+            Debug.Log("gameover");
+            Time.timeScale = 0;
+            textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+            UIGameOver.SetActive(true); 
+       // }
     }
 
     public void Restart()
