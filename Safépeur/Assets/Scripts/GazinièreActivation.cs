@@ -7,19 +7,36 @@ public class GazinièreActivation : MonoBehaviour
 {
     public GameObject player;
     public float playerDistance;
-    public int gazinièreState = 5;
+    public int gazinièreState = 0;
     public KeyCode Space = KeyCode.Space;
     public float timePerStep;
-    public float numberOfStates = 5;
+    public float numberOfStates = 3;
     public float timerGaziniere = 0;
     public bool gazinièreOn;
     public float timeToDo = 10;
+    public bool canInteract;
+    public List<Sprite> spritesListNotOutlined;
+    public List<Sprite> spritesListOutlined;
+    public SpriteRenderer sr;
+    
 
     private void Update()
     {
+        if (canInteract == true)
+        {
+            sr.sprite = spritesListOutlined[gazinièreState];
+        }
+        if (canInteract == false)
+        {
+            sr.sprite = spritesListNotOutlined[gazinièreState];
+        }
         if (gazinièreOn == true)
         { 
             DepartGaziniere(timeToDo);
+        }
+        else
+        {
+            canInteract = false;
         }
     }
 
@@ -38,19 +55,24 @@ public class GazinièreActivation : MonoBehaviour
             timerGaziniere = 0;
         }
 
-        if (gazinièreState == 5)
+        if (gazinièreState == numberOfStates)
         {
             Debug.Log("tu es mort");
             gazinièreOn = false;
         }
         if (playerDistance < 3)
         {
+            canInteract = true;
             if (Input.GetKeyDown(Space))
             {
                 gazinièreOn = false;
                 timerGaziniere = 0;
                 gazinièreState = 0;
             }
+        }
+        else
+        {
+            canInteract = false;
         }
         
     }
