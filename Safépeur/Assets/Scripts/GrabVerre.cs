@@ -1,40 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabVerre : MonoBehaviour
 {
+    [Header("GameObjects")]
     public GameObject player;
     public GameObject zonePose;
     public GameObject toilettes;
+    
+    
+    [Header("Autres")]
+    public bool VerreGrab;   // Si le perso tient le verre
+    public KeyCode Space = KeyCode.Space;
+    public int VerreFilling = 8;
+    public float timerVerreFilling = 0;
+    public FlacQuiTue flaque;
+    public toilettes toilettesProg;
+    public Event_Manager manager;
+    
+    
+    [Header("Sprites")]
     public SpriteRenderer spToilettes;
     public SpriteRenderer spGouttes;
     public SpriteRenderer spVerre;
+    public List<Sprite> spritesOutlined;
+    public List<Sprite> spritesNotOutlined;
     public Sprite toilettesSpriteSet;
     public Sprite toilettesSpriteUnset;
     public Sprite gouttesSpriteSet;
     public Sprite gouttesSpriteUnset;
-    public bool VerreGrab;
-    private float playerDistanceZone;
-    private float playerDistanceToilettes;
-    public KeyCode Space = KeyCode.Space;
-    public int VerreFilling = 8;
-    public float timerVerreFilling = 0;
-    public List<Sprite> spritesOutlined;
-    public List<Sprite> spritesNotOutlined;
-    public bool isAtRange;
+
 
     void Update()
     {
-        playerDistanceZone = Mathf.Abs(player.transform.position.x - zonePose.transform.position.x);
-        playerDistanceToilettes = Mathf.Abs(player.transform.position.x - toilettes.transform.position.x);
         timerVerreFilling += Time.deltaTime;
         
-    
         
         if (VerreFilling >= 7)
         {
             VerreFilling = 7;
+            manager.GameOver();
         }
 
         if (timerVerreFilling > 5 && VerreGrab == false)
@@ -55,10 +62,10 @@ public class GrabVerre : MonoBehaviour
             transform.position = zonePose.transform.position;
         }
 
-        
-        if (playerDistanceZone < 3)
+        // Si le perso peut prendre le verre
+        if (flaque.isAtRange == true)
         {
-            isAtRange = true;
+            // On illumine le contour
             spGouttes.sprite = gouttesSpriteSet; 
             if (Input.GetKeyDown(Space) )
             {
@@ -74,11 +81,10 @@ public class GrabVerre : MonoBehaviour
         }
         else
         {
-            isAtRange = false;
             spGouttes.sprite = gouttesSpriteUnset;
         }
     
-        if (playerDistanceToilettes < 3) 
+        if (toilettesProg.isAtRange) 
         {
             spToilettes.sprite = toilettesSpriteSet; 
             if (Input.GetKeyDown(Space) )
@@ -95,9 +101,8 @@ public class GrabVerre : MonoBehaviour
             spToilettes.sprite = toilettesSpriteUnset;
         }
 
-        if (isAtRange == true && VerreGrab == false)
+        if (flaque.isAtRange == true && VerreGrab == false)
         {
-            Debug.Log("Outline !!!");
             spVerre.sprite = spritesOutlined[VerreFilling];
         }
         else

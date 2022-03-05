@@ -106,8 +106,6 @@ public class CharacterControler : MonoBehaviour
         
         if (surEchelle == true && !(Input.GetKey(GoUp)) && !(Input.GetKey(GoDown)))
         {
-            Debug.Log("stop");
-            //animStop.Play("Player_StopEchelle");
             IsClimbing2 = true;
         }
     }

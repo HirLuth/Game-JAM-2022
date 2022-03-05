@@ -16,6 +16,7 @@ public class TV : MonoBehaviour
     public float timerTV;
     private KeyCode interaction = KeyCode.Space;
     private bool illumine;
+    public Event_Manager manager;
 
     public Sprite grésillement;
     public Sprite grésillement2;
@@ -108,7 +109,7 @@ public class TV : MonoBehaviour
             
             if (timerTV > limitTimerTV)
             {
-                Debug.Log("Mort");
+                manager.GameOver();
             }
         }
         
@@ -122,7 +123,7 @@ public class TV : MonoBehaviour
             {
                 if (limitTimerTV2 < timerTV || dontChange == true)
                 {
-                    Debug.Log("Mort");
+                    manager.GameOver();
                 }
             }
 

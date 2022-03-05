@@ -244,6 +244,7 @@ MonoBehaviour:
   limitTimerTV2: 1
   TVBugs: 0
   timerTV: 0
+  manager: {fileID: 0}
   "gr\xE9sillement": {fileID: 21300000, guid: f5ad418c05725914c819d4e32dd1ed5c, type: 3}
   "gr\xE9sillement2": {fileID: 21300000, guid: 3201d2045d0fe7240b4afb14df5a50d1, type: 3}
   mauvais1: {fileID: 21300000, guid: 3adb0095107f10742bee9ddf83bffda7, type: 3}

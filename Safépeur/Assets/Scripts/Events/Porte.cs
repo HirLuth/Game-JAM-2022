@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Porte : MonoBehaviour
 {
-    public GameObject character;
     public Animator anim;
+    public Event_Manager manager;
+    
 
     public bool ouverturePorte;
     public float tempsOuverture;
@@ -31,7 +32,7 @@ public class Porte : MonoBehaviour
         
         if (timerPorte >= tempsOuverture && (mouvement > 0.01f || mouvement < -0.01f))
         {
-            Debug.Log("Mort");
+            manager.GameOver();
         }
         
         else if (timerPorte >= (tempsOuverture + 2.5f))

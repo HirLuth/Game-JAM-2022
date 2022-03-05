@@ -111,8 +111,6 @@ public class Event_Manager : MonoBehaviour
         {
             ChoixEvent();
         }
-        
-        Debug.Log(Time.deltaTime);
     }
 
     void ChoixEvent()
