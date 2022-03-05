@@ -79,12 +79,6 @@ public class Event_Manager : MonoBehaviour
         {
             porte.Ouverture();
         }
-        
-        // Si l'évènement de la TV est en cours (toujours actif)
-        if (TV.TVBugs)
-        {
-            TV.BugTV(TVLimite1, TVLimite2);
-        }
 
         if (gazinière.gazinièreOn == true)
         {
@@ -125,13 +119,13 @@ public class Event_Manager : MonoBehaviour
     {
         timerProchainDanger = 0;
 
-        float randomNumber = Random.Range(1,100);
+        float randomNumber = Random.Range(1,80);
         
-        if (randomNumber < -20)
+        if (randomNumber < 20)
         {
             porte.Ouverture();
         }
-        else if (randomNumber < -40)
+        else if (randomNumber < 40)
         {
             numeroFenetre = Random.Range(1, 4);
             if (numeroFenetre == 1)
@@ -147,7 +141,7 @@ public class Event_Manager : MonoBehaviour
                 fenetre3.OuvertureFenetre3(dureeFenetre1, dureeFenetre2);
             }
         }
-        else if (randomNumber < 800)
+        else if (randomNumber < 60)
         {
             gazinière.DepartGaziniere(gaziniereDuree);
         }
@@ -155,7 +149,6 @@ public class Event_Manager : MonoBehaviour
         {
             TV.spriteActuel = 0;
             TV.timerTV = 0;
-            TV.BugTV(TVLimite1, TVLimite2);
         }
     }
 
@@ -164,14 +157,10 @@ public class Event_Manager : MonoBehaviour
     {
         timerTemps.SetActive(false);
         Screamer.SetActive(true);
-      //  timerScreamer += Time.deltaTime;
-      //  if (timerScreamer >= timerMaxScreamer)
-      //  {
-            Debug.Log("gameover");
-            Time.timeScale = 0;
-            textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
-            UIGameOver.SetActive(true); 
-       // }
+        Debug.Log("gameover");
+        Time.timeScale = 0;
+        textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+        UIGameOver.SetActive(true);
     }
 
     public void Restart()
