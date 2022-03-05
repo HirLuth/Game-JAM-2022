@@ -27,25 +27,25 @@ public class GazinièreActivation : MonoBehaviour
     private void Update()
     {
         // Quand le perso est à portée
-        if (canInteract == true)
+        if (canInteract == true && gazinièreOn == true)
         {
             sr.sprite = spritesListOutlined[gazinièreState];
         }
         
         // Quand le perso est trop loin 
-        if (canInteract == false)
+        if (canInteract == false || gazinièreOn == false)
         {
             sr.sprite = spritesListNotOutlined[gazinièreState];
         }
     }
+    
 
     public void DepartGaziniere(float timeToDo)
     {
-        
         gazinièreOn = true;
         
-        playerDistance = Mathf.Abs(player.transform.position.x - transform.position.x);
         timePerStep = timeToDo / numberOfStates;
+        
         if (gazinièreState == 0)
         {
             gazinièreState = 1;
@@ -62,9 +62,9 @@ public class GazinièreActivation : MonoBehaviour
             em.GameOver();
             gazinièreOn = false;
         }
-        if (playerDistance < 3)
+        
+        if (canInteract == true)
         {
-            canInteract = true;
             if (Input.GetKeyDown(Space))
             {
                 gazinièreOn = false;
@@ -72,10 +72,16 @@ public class GazinièreActivation : MonoBehaviour
                 gazinièreState = 0;
             }
         }
-        else
-        {
-            canInteract = false;
-        }
-        
+
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        canInteract = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        canInteract = false;
     }
 }
