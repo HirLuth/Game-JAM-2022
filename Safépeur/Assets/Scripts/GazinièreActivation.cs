@@ -12,9 +12,12 @@ public class GazinièreActivation : MonoBehaviour
     public float timePerStep;
     public float numberOfStates = 3;
     public float timerGaziniere = 0;
+    
     public bool gazinièreOn;
     public float timeToDo = 10;
     public bool canInteract;
+    
+    // Ca c'est les sprites
     public List<Sprite> spritesListNotOutlined;
     public List<Sprite> spritesListOutlined;
     public SpriteRenderer sr;
@@ -22,26 +25,24 @@ public class GazinièreActivation : MonoBehaviour
 
     private void Update()
     {
+        // Quand le perso est à portée
         if (canInteract == true)
         {
             sr.sprite = spritesListOutlined[gazinièreState];
         }
+        
+        // Quand le perso est trop loin 
         if (canInteract == false)
         {
             sr.sprite = spritesListNotOutlined[gazinièreState];
-        }
-        if (gazinièreOn == true)
-        { 
-            DepartGaziniere(timeToDo);
-        }
-        else
-        {
-            canInteract = false;
         }
     }
 
     public void DepartGaziniere(float timeToDo)
     {
+        
+        gazinièreOn = true;
+        
         playerDistance = Mathf.Abs(player.transform.position.x - transform.position.x);
         timePerStep = timeToDo / numberOfStates;
         if (gazinièreState == 0)
