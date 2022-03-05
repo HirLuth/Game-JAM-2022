@@ -13,8 +13,8 @@ public class Event_Manager : MonoBehaviour
   public Porte porte;
   public TV TV;
   public Fenêtre fenetre;
-  public Fenêtre2 fenetre2;
-  public Fenêtre3 fenetre3;
+  public Fenêtre fenetre2;
+  public Fenêtre fenetre3;
   public GazinièreActivation gazinière;
 
   [Header("Prochain danger")]
@@ -34,7 +34,7 @@ public class Event_Manager : MonoBehaviour
   [Header("DifficultéFenêtre")] 
   public float dureeFenetre1 = 3f;
   public float dureeFenetre2 = 9f;
-  public int numeroFenetre;
+  public int numeroFenetre = 1;
 
   [Header("difficultéGazinière")] 
   public float gaziniereDuree = 15f;
@@ -104,11 +104,11 @@ public class Event_Manager : MonoBehaviour
             }
             else if (numeroFenetre == 2)
             {
-                fenetre2.OuvertureFenetre2(dureeFenetre1, dureeFenetre2);
+                fenetre2.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
             else
             {
-                fenetre3.OuvertureFenetre3(dureeFenetre1, dureeFenetre2);
+                fenetre3.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
         }
         
@@ -143,11 +143,11 @@ public class Event_Manager : MonoBehaviour
             }
             else if (numeroFenetre == 2)
             {
-                fenetre2.OuvertureFenetre2(dureeFenetre1, dureeFenetre2);
+                fenetre2.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
             else
             {
-                fenetre3.OuvertureFenetre3(dureeFenetre1, dureeFenetre2);
+                fenetre3.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
         }
         else if (randomNumber < 60)
@@ -166,12 +166,13 @@ public class Event_Manager : MonoBehaviour
     {
         timerScreamer += Time.deltaTime;
 
-        if (timerScreamer < 2)
+        if (timerScreamer < 2 && screaming == false)
         {
+            screaming = true;
             screamer.SetActive(true);
-            StartCoroutine(cameraShake.Shake(0.1f, 0.1f));
+            StartCoroutine(cameraShake.Shake(2f, 0.3f));
         }
-        else
+        else if (timerScreamer >= 2)
         {
             timerTemps.SetActive(false);
             Screamer.SetActive(true);
