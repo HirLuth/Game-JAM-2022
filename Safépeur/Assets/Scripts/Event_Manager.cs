@@ -6,19 +6,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Event_Manager : MonoBehaviour
-{
-
-   // public bool Event_Fuite;      //1
-    //public bool Event_Porte;     //2
-    //public bool Event_Fenêtre;  //3
-    //  public bool Event_Feu;   //4
-  //  public bool Event_Télé;   //5
-  public float TimerDifficulty;
+{ 
+    public float TimerDifficulty;
 
   [Header("(Attention)Dangers")] 
   public Porte porte;
   public TV TV;
   public Fenêtre fenetre;
+  public Fenêtre2 fenetre2;
+  public Fenêtre3 fenetre3;
+  public GazinièreActivation gazinière;
 
   [Header("Prochain danger")]
   public float prochainDanger;
@@ -37,11 +34,15 @@ public class Event_Manager : MonoBehaviour
   [Header("DifficultéFenêtre")] 
   public float dureeFenetre1 = 3f;
   public float dureeFenetre2 = 9f;
+  public int numeroFenetre;
+
+  [Header("difficultéGazinière")] 
+  public float gaziniereDuree = 15f;
 
 
-  [Header("UI")] 
-  public TextMeshProUGUI textGameOver;
-  public GameObject UIGameOver;
+  //[Header("UI")] 
+  //public TextMeshProUGUI textGameOver;
+  //public GameObject UIGameOver;
 
 
 
@@ -49,7 +50,7 @@ public class Event_Manager : MonoBehaviour
     {
         //prochainDanger = Random.Range(1, 100);
         Event_Fuite();
-        UIGameOver.SetActive(false);
+        //UIGameOver.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -59,9 +60,8 @@ public class Event_Manager : MonoBehaviour
         TimerDifficulty += Time.deltaTime;
 
         // On fait évoluer la difficulté avec le temps 
-        if (TimerDifficulty > 6)
+        if (TimerDifficulty > 60)
         {
-            GameOver();
             difficulté = 1.1f;
         }
         else if (TimerDifficulty > 120)
@@ -69,6 +69,7 @@ public class Event_Manager : MonoBehaviour
             difficulté = 1.2f;
         }
 
+        
         // Si l'évènement de la porte est en cours
         if (porte.ouverturePorte)
         {
@@ -81,10 +82,27 @@ public class Event_Manager : MonoBehaviour
             TV.BugTV(TVLimite1, TVLimite2);
         }
 
-        if (fenetre.openingFenetre)
+        if (gazinière.gazinièreOn == true)
         {
-            fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+            gazinière.DepartGaziniere(gaziniereDuree);
         }
+
+        if (fenetre.openingFenetre || fenetre2.openingFenetre || fenetre3.openingFenetre)
+        {
+            if (numeroFenetre == 1)
+            {
+                fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+            }
+            else if (numeroFenetre == 2)
+            {
+                fenetre2.OuvertureFenetre2(dureeFenetre1, dureeFenetre2);
+            }
+            else
+            {
+                fenetre3.OuvertureFenetre3(dureeFenetre1, dureeFenetre2);
+            }
+        }
+        
 
         // Plus la difficulté est haute, plus le timer va vite et donc plus les dangers arrivent rapidement
         if (timerProchainDanger < prochainDanger)
@@ -100,21 +118,32 @@ public class Event_Manager : MonoBehaviour
     void ChoixEvent()
     {
         timerProchainDanger = 0;
-        Debug.Log("Oui");
-        
+
         float randomNumber = Random.Range(1,100);
         
         if (randomNumber < -20)
         {
             porte.Ouverture();
         }
-        else if (randomNumber < 400)
+        else if (randomNumber < -40)
         {
-            fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+            numeroFenetre = Random.Range(1, 4);
+            if (numeroFenetre == 1)
+            {
+                fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+            }
+            else if (numeroFenetre == 2)
+            {
+                fenetre2.OuvertureFenetre2(dureeFenetre1, dureeFenetre2);
+            }
+            else
+            {
+                fenetre3.OuvertureFenetre3(dureeFenetre1, dureeFenetre2);
+            }
         }
-        else if (randomNumber < -80)
+        else if (randomNumber < 800)
         {
-            Event_Feu();
+            gazinière.DepartGaziniere(gaziniereDuree);
         }
         else
         {
@@ -128,8 +157,8 @@ public class Event_Manager : MonoBehaviour
     void GameOver()
     {
         Time.timeScale = 0;
-        textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
-        UIGameOver.SetActive(true);
+        //textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+        //UIGameOver.SetActive(true);
     }
 
     public void Restart()

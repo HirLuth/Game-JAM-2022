@@ -718,6 +718,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1907879760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4740403455876655382, guid: a3ffe621a0cc85640b629692bf681463, type: 3}
+  m_PrefabInstance: {fileID: 4740403455585683014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1907879762
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907879760}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7530b774ffacd4c438b3f931fb195400, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1195783833252319137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -974,6 +998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 583a3b3fbee699943bcfccd78a446872, type: 3}
+--- !u!212 &5582982331324984953 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3028574020763393827, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+  m_PrefabInstance: {fileID: 7457139506785579354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5582982331324984956 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3028574020763393830, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
@@ -990,6 +1019,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3028574020763393831, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
   m_PrefabInstance: {fileID: 7457139506785579354}
   m_PrefabAsset: {fileID: 0}
+--- !u!111 &5582982331324984958
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582982331324984957}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 0d5cf7bdcc3660246812b43d8095fa3e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 0d5cf7bdcc3660246812b43d8095fa3e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &5965443707771558330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1064,11 +1109,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3028574020763393826, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.28
+      value: -2.178
       objectReference: {fileID: 0}
     - target: {fileID: 3028574020763393826, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.1
+      value: -3.118
       objectReference: {fileID: 0}
     - target: {fileID: 3028574020763393826, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1102,6 +1147,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3028574020763393827, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4542391725944780103, guid: 2a7768166c904d84eb69f60ebfa07226, type: 3}
+    - target: {fileID: 3028574020763393830, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+      propertyPath: animStop
+      value: 
+      objectReference: {fileID: 5582982331324984958}
+    - target: {fileID: 3028574020763393830, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+      propertyPath: playerSP
+      value: 
+      objectReference: {fileID: 5582982331324984953}
+    - target: {fileID: 3028574020763393830, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+      propertyPath: basEchelle
+      value: -2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028574020763393830, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+      propertyPath: hautEchelle
+      value: 2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028574020763393830, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
+      propertyPath: spriteClimb1
+      value: 
+      objectReference: {fileID: -4702178584404590877, guid: 7c97ce72c448baf45a736819158d9c96, type: 3}
     - target: {fileID: 3028574020763393831, guid: ce510b4bbe8cd99459f3ff294ac58f1a, type: 3}
       propertyPath: m_Name
       value: Personnage
