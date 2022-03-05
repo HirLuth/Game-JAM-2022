@@ -6,7 +6,7 @@ public class Fenêtre : MonoBehaviour
 {
     public float timerFenêtre = 0f;
     public bool openingFenetre;
-    
+
     public bool canDie;
 
     public SpriteRenderer spriteRenderer;
