@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Schema;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Event_Manager : MonoBehaviour
 {
@@ -35,14 +37,20 @@ public class Event_Manager : MonoBehaviour
   [Header("DifficultéFenêtre")] 
   public float dureeFenetre1 = 3f;
   public float dureeFenetre2 = 9f;
-  
-  
-  
-  
-    void Start()
+
+
+  [Header("UI")] 
+  public TextMeshProUGUI textGameOver;
+  public GameObject UIGameOver;
+
+
+
+  void Start()
     {
         //prochainDanger = Random.Range(1, 100);
         Event_Fuite();
+        UIGameOver.SetActive(false);
+        Time.timeScale = 1;
     }
 
 
@@ -51,8 +59,9 @@ public class Event_Manager : MonoBehaviour
         TimerDifficulty += Time.deltaTime;
 
         // On fait évoluer la difficulté avec le temps 
-        if (TimerDifficulty > 60)
+        if (TimerDifficulty > 6)
         {
+            GameOver();
             difficulté = 1.1f;
         }
         else if (TimerDifficulty > 120)
@@ -114,10 +123,26 @@ public class Event_Manager : MonoBehaviour
             TV.BugTV(TVLimite1, TVLimite2);
         }
     }
-    
-    
-    
-   
+
+
+    void GameOver()
+    {
+        Time.timeScale = 0;
+        textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+        UIGameOver.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
     
     void Event_Porte()
     {
