@@ -41,6 +41,7 @@ public class GazinièreActivation : MonoBehaviour
         if (gazinièreState == 5)
         {
             Debug.Log("tu es mort");
+            gazinièreOn = false;
         }
         if (playerDistance < 3)
         {
