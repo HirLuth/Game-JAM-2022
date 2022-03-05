@@ -9,6 +9,7 @@ public class GrabVerre : MonoBehaviour
     public GameObject toilettes;
     public SpriteRenderer spToilettes;
     public SpriteRenderer spGouttes;
+    public SpriteRenderer spVerre;
     public Sprite toilettesSpriteSet;
     public Sprite toilettesSpriteUnset;
     public Sprite gouttesSpriteSet;
@@ -19,7 +20,10 @@ public class GrabVerre : MonoBehaviour
     public KeyCode Space = KeyCode.Space;
     public int VerreFilling = 8;
     public float timerVerreFilling = 0;
-    
+    public List<Sprite> spritesOutlined;
+    public List<Sprite> spritesNotOutlined;
+    public bool isAtRange;
+
     void Update()
     {
         playerDistanceZone = Mathf.Abs(player.transform.position.x - zonePose.transform.position.x);
@@ -28,9 +32,9 @@ public class GrabVerre : MonoBehaviour
         
     
         
-        if (VerreFilling >= 8)
+        if (VerreFilling >= 7)
         {
-            VerreFilling = 8;
+            VerreFilling = 7;
         }
 
         if (timerVerreFilling > 5 && VerreGrab == false)
@@ -51,8 +55,10 @@ public class GrabVerre : MonoBehaviour
             transform.position = zonePose.transform.position;
         }
 
-        if (playerDistanceZone < 3) 
+        
+        if (playerDistanceZone < 3)
         {
+            isAtRange = true;
             spGouttes.sprite = gouttesSpriteSet; 
             if (Input.GetKeyDown(Space) )
             {
@@ -68,6 +74,7 @@ public class GrabVerre : MonoBehaviour
         }
         else
         {
+            isAtRange = false;
             spGouttes.sprite = gouttesSpriteUnset;
         }
     
@@ -87,7 +94,15 @@ public class GrabVerre : MonoBehaviour
         {
             spToilettes.sprite = toilettesSpriteUnset;
         }
-        
-        
+
+        if (isAtRange == true && VerreGrab == false)
+        {
+            Debug.Log("Outline !!!");
+            spVerre.sprite = spritesOutlined[VerreFilling];
+        }
+        else
+        {
+            spVerre.sprite = spritesNotOutlined[VerreFilling];
+        }
     }
 }
