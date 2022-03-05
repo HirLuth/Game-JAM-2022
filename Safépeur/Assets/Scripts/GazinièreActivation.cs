@@ -26,6 +26,11 @@ public class GazinièreActivation : MonoBehaviour
 
     private void Update()
     {
+        if (gazinièreState > 5)
+        {
+            gazinièreState = 5;
+        }
+        
         // Quand le perso est à portée
         if (canInteract == true && gazinièreOn == true)
         {
