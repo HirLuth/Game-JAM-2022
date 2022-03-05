@@ -25,6 +25,7 @@ public class Porte : MonoBehaviour
 
         float mouvement = Input.GetAxisRaw("Horizontal");
 
+
         if (timerPorte >= tempsOuverture)
         {
             opens = true;
@@ -43,7 +44,7 @@ public class Porte : MonoBehaviour
             timerPorte = 0;
         }
         
-        anim.SetBool("PorteOuverte", opens);
+        anim.SetBool("PorteOuverte", ouverturePorte);
 
     }
 }
