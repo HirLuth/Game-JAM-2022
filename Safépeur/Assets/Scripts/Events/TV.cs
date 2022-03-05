@@ -85,15 +85,12 @@ public class TV : MonoBehaviour
                 spriteRenderer.sprite = bon;
             }
         }
-    }
-
-    public void BugTV(float limitTimerTV, float limitTimerTV2)
-    {
+        
         TVBugs = true;
         dontChange = false;
         
         // Quand le perso appuie pour changer de chaîne
-        if (Input.GetKeyDown(interaction))
+        if (Input.GetKeyDown(interaction) && illumine == true)
         {
             retenue = spriteActuel;
             timerTV = 0;
