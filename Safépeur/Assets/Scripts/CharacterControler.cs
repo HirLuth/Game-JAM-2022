@@ -25,7 +25,11 @@ public class CharacterControler : MonoBehaviour
     private KeyCode GoUp = KeyCode.UpArrow;
     private KeyCode GoDown = KeyCode.DownArrow;
     public bool IsWalking2;
+    public bool IsClimbing2;
     public Animator anim;
+    public SpriteRenderer playerSP;
+    public Sprite spriteClimb1;
+    public Animation animStop;
 
     void Update()
     {
@@ -49,6 +53,7 @@ public class CharacterControler : MonoBehaviour
             IsWalking2 = false;   
         }
         anim.SetBool("IsWalking",IsWalking2);
+        anim.SetBool("IsClimbing",IsClimbing2);
 
         if (rb.velocity.x > 0)
         {
@@ -59,14 +64,13 @@ public class CharacterControler : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0,0,0);
         }
+
+        
     }
-    
-    
     
     void MoveCharacter()
     {
         rb.velocity = new Vector2(speed * direction, 0);
-        
     }
 
     void Echelle()
@@ -75,17 +79,19 @@ public class CharacterControler : MonoBehaviour
         rb.gravityScale = 0;
         surEchelle = true;
         bc.isTrigger = true;
-        
+
         directionVerticale = Input.GetAxisRaw("Vertical");
 
         
         if (directionVerticale < 0.1f && directionVerticale > -0.1f)
         {
             rb.velocity = new Vector2(0, 0);
+            IsClimbing2 = false;
         }
         else
         {
             rb.velocity = new Vector2(0, vitesseEchelle * directionVerticale);
+            IsClimbing2 = true;
         }
 
         // Pour sortir de l'état échelle
@@ -94,6 +100,15 @@ public class CharacterControler : MonoBehaviour
             rb.gravityScale = 8;
             bc.isTrigger = false;
             surEchelle = false;
+            IsWalking2 = true;
+            IsClimbing2 = false;
+        }
+        
+        if (surEchelle == true && !(Input.GetKey(GoUp)) && !(Input.GetKey(GoDown)))
+        {
+            Debug.Log("stop");
+            //animStop.Play("Player_StopEchelle");
+            IsClimbing2 = true;
         }
     }
 }
