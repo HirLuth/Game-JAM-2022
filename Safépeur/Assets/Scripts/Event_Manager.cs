@@ -44,9 +44,15 @@ public class Event_Manager : MonoBehaviour
   public TextMeshProUGUI textGameOver;
   public GameObject UIGameOver;
   public GameObject Screamer;
-  public float timerScreamer;
+  private float timerScreamer;
   public int timerMaxScreamer;
   public GameObject timerTemps;
+
+
+  [Header("gameOver")] 
+  public cameraShake cameraShake;
+  public GameObject screamer;
+  private bool screaming;
 
 
 
@@ -61,6 +67,11 @@ public class Event_Manager : MonoBehaviour
 
     void Update()
     {
+        if (screaming)
+        {
+            GameOver();
+        }
+        
         TimerDifficulty += Time.deltaTime;
 
         // On fait évoluer la difficulté avec le temps 
@@ -153,13 +164,24 @@ public class Event_Manager : MonoBehaviour
 
     public void GameOver()
     {
-        timerTemps.SetActive(false);
-        Screamer.SetActive(true);
-        Time.timeScale = 0;
-        textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
-        UIGameOver.SetActive(true);
+        timerScreamer += Time.deltaTime;
+
+        if (timerScreamer < 2)
+        {
+            screamer.SetActive(true);
+            StartCoroutine(cameraShake.Shake(0.1f, 0.1f));
+        }
+        else
+        {
+            timerTemps.SetActive(false);
+            Screamer.SetActive(true);
+            Time.timeScale = 0;
+            textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+            UIGameOver.SetActive(true);
+        }
     }
 
+    
     public void Restart()
     {
         Scene scene = SceneManager.GetActiveScene();
