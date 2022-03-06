@@ -17,6 +17,10 @@ public class Fenêtre : MonoBehaviour
     public Sprite fenetreAttentionDanger;
     public Light2D light;
 
+    public AudioSource audioSource1;
+    public bool audioBool1 = true;
+    public bool audioBool2 = true;
+
     public void Start()
     {
         retenue = light.color;
@@ -30,6 +34,11 @@ public class Fenêtre : MonoBehaviour
         // Ca se ferme
         if (timerFenêtre < rideauxFin)
         {
+            if (audioBool1 == true)
+            {
+                audioSource1.Play();
+                audioBool1 = false;
+            }
             spriteRenderer.sprite = fenetreFermée;
             Debug.Log(light.intensity);
             light.intensity = 0;
@@ -37,6 +46,11 @@ public class Fenêtre : MonoBehaviour
         // La c'est le danger
         else
         {
+            if (audioBool2 == true)
+            {
+                audioSource1.Play();
+                audioBool2 = false;
+            }
             spriteRenderer.sprite = fenetreAttentionDanger;
             canDie = true;
             light.intensity = 0.01f;
@@ -46,6 +60,8 @@ public class Fenêtre : MonoBehaviour
         // Retour à la normale
         if (timerFenêtre > yeuxFin)
         {
+            audioBool1 = true;
+            audioBool2 = true;
             light.color = retenue;
             light.intensity = 1;
             canDie = false;

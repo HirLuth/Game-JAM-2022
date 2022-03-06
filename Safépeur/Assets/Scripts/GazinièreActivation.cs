@@ -22,7 +22,9 @@ public class GazinièreActivation : MonoBehaviour
     public List<Sprite> spritesListNotOutlined;
     public List<Sprite> spritesListOutlined;
     public SpriteRenderer sr;
-    
+
+    public AudioSource audioSource1;
+    private bool audioBool = true;
 
     private void Update()
     {
@@ -42,6 +44,20 @@ public class GazinièreActivation : MonoBehaviour
         {
             sr.sprite = spritesListNotOutlined[gazinièreState];
         }
+
+        if (gazinièreOn == true && audioBool == true)
+        {
+            audioSource1.Play();
+            audioBool = false;
+        }
+        
+        if (gazinièreOn == false )
+        {
+            audioSource1.Stop();
+            audioBool = true;
+        }
+
+        
     }
     
 

@@ -119,7 +119,6 @@ public class TV : MonoBehaviour
         {
             if (audioBool)
             {
-                Debug.Log("bite");
                 audioSource1.Play();
                 audioBool = false;
             }
@@ -138,7 +137,6 @@ public class TV : MonoBehaviour
         {
             if (audioBool)
             {
-                Debug.Log("bite");
                 audioSource1.Play();
                 audioBool = false;
             }
@@ -155,12 +153,16 @@ public class TV : MonoBehaviour
             // Si c'est la chaine des télétubbies
             if (spriteActuel == 4 && timerTV > 0)
             {
-                audioBool = true;
-                audioSource1.Stop();
                 timerTV -= Time.deltaTime * 3 ;
                 dontChange = true;
             }
+            if(spriteActuel == 4)
+            {
+                audioBool = true;
+                audioSource1.Stop();
+            }
         }
+        
 
         variance = timerTV / limitTimerTV;
         light.color = Color.Lerp(originelle, red, variance);
