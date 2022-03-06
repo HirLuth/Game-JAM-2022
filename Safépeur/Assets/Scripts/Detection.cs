@@ -7,12 +7,15 @@ public class Detection : MonoBehaviour
 {
     public Fenêtre fenetre;
     public Event_Manager manager;
-    
-    private void OnTriggerStay2D(Collider2D other)
+
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (fenetre.canDie == true)
-        {
-            manager.GameOver();
-        }
+        fenetre.canDie = false;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        fenetre.canDie = true;
     }
 }

@@ -14,4 +14,12 @@ public class Detection3 : MonoBehaviour
             manager.GameOver();
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (fenetre.canDie == true)
+        {
+            manager.GameOver();
+        }
+    }
 }

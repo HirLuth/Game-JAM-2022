@@ -8,6 +8,7 @@ public class Fenêtre : MonoBehaviour
 {
     public float timerFenêtre = 0f;
     public bool openingFenetre;
+    public Event_Manager manager;
 
     public bool canDie;
     public Vector4 retenue;
@@ -22,7 +23,7 @@ public class Fenêtre : MonoBehaviour
     public bool audioBool1 = true;
     public bool audioBool2 = true;
     public bool eventManager;
-
+    
     public void Start()
     {
         retenue = light.color;
@@ -64,9 +65,13 @@ public class Fenêtre : MonoBehaviour
                 audioBool2 = false;
             }
             spriteRenderer.sprite = fenetreAttentionDanger;
-            canDie = true;
             light.intensity = 0.01f;
             light.color = new Vector4(207,38,44, 50);
+
+            if (canDie)
+            {
+                manager.GameOver();
+            }
         }
 
         // Retour à la normale

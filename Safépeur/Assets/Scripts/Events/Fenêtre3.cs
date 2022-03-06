@@ -7,6 +7,7 @@ public class Fenêtre3 : MonoBehaviour
 {
     public float timerFenêtre = 0f;
     public bool openingFenetre;
+    public Event_Manager manager;
 
     public bool canDie;
     public Vector4 retenue;
@@ -66,9 +67,14 @@ public class Fenêtre3 : MonoBehaviour
                 audioBool2 = false;
             }
             spriteRenderer.sprite = fenetreAttentionDanger;
-            canDie = true;
             light.intensity = 0.01f;
+            
             light.color = new Vector4(207,38,44, 50);
+            
+            if (canDie)
+            {
+                manager.GameOver();
+            }
         }
 
         // Retour à la normale
