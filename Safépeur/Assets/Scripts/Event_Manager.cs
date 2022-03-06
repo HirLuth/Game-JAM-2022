@@ -153,6 +153,7 @@ public class Event_Manager : MonoBehaviour
     void ChoixEvent()
     {
         timerProchainDanger = 0;
+        prochainDanger = Random.Range(prochainDangerMin, prochainDangerMin + prochainDangerArray);
         float randomNumber = Random.Range(1,101);
         
         if (randomNumber < pourcentageGazinière)
@@ -168,6 +169,7 @@ public class Event_Manager : MonoBehaviour
     void ChoixBadEvent()
     {
         timerProchainDangerBad = 0;
+        prochainDangerBad = Random.Range(prochainDangerBadMin, prochainDangerBadMin + prochainDangerBadArray);
 
         float randomNumber = Random.Range(1,101);
         
