@@ -72,10 +72,10 @@ public class Event_Manager : MonoBehaviour
 
 
   void Start()
-    {
+  {
+        Time.timeScale = 1;
         Event_Fuite();
         UIGameOver.SetActive(false);
-        Time.timeScale = 1;
         Screamer.SetActive(false);
         prochainDanger = Random.Range(prochainDangerMin, prochainDangerMin + prochainDangerArray);
         prochainDangerBad = Random.Range(prochainDangerBadMin, prochainDangerBadMin + prochainDangerBadArray);

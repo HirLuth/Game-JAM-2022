@@ -10,11 +10,13 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timerText;
     
     
-    // Update is called once per frame
     void Update()
     {
-        timeValue += Time.deltaTime;
-        DisplayTime(timeValue);
+        if (Time.timeScale != 0)
+        {
+            timeValue += Time.deltaTime;
+            DisplayTime(timeValue);
+        }
     }
 
     void DisplayTime(float timeToDisplay)

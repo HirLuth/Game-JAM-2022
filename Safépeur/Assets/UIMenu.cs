@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Scene = UnityEngine.SceneManagement.Scene;
 
 public class UIMenu : MonoBehaviour
 {
@@ -10,12 +12,13 @@ public class UIMenu : MonoBehaviour
     public float timerAnim;
     public float tempsAnim;
     public bool doingStartAnim = false;
-    
-    
+
+    public string LEGrandBuild = "LEGrandBuild";
+
+
     void Start()
     {
         UIMenuManager.SetActive(true);
-      //  UIMenuManager.SetActive(true);
         Time.timeScale = 0;
         doingStartAnim = false;
     }
@@ -25,13 +28,13 @@ public class UIMenu : MonoBehaviour
     {
         if(doingStartAnim == true)
         {
-            Début();
+            SceneManager.LoadScene("LEGrandBuild");
         }
     }
 
     public void Début()
     {
-        Debug.Log("ahhhhhhhhhhhh");
+        SceneManager.LoadScene(LEGrandBuild);
         doingStartAnim = true;
         timerAnim += Time.deltaTime;
         Time.timeScale = 1;
