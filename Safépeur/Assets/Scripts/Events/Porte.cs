@@ -14,13 +14,15 @@ public class Porte : MonoBehaviour
     public bool opens;
     private Vector3 retenue;
     private bool retenueFaite;
-
+    public AudioSource audioSource1;
+    public AudioClip audioClip1;
+    public AudioSource audioSource2;
 
 
     public void Ouverture()
     {
+        audioSource1.PlayOneShot(audioClip1);
         ouverturePorte = true;
-        
         timerPorte += Time.deltaTime;
 
         float mouvement = Input.GetAxisRaw("Horizontal");
@@ -29,6 +31,7 @@ public class Porte : MonoBehaviour
         if (timerPorte >= tempsOuverture)
         {
             opens = true;
+            audioSource2.Play();
         }
         
         if (timerPorte >= tempsOuverture && (mouvement > 0.01f || mouvement < -0.01f))
