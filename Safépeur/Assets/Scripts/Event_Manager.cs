@@ -19,7 +19,13 @@ public class Event_Manager : MonoBehaviour
 
   [Header("Prochain danger")]
   public float prochainDanger;
+  public float prochainDangerBad;
+  public float prochainDangerMin = 7;
+  public float prochainDangerBadMin = 2;
+  public float prochainDangerArray = 3;
+  public float prochainDangerBadArray = 5;
   public float timerProchainDanger;
+  public float timerProchainDangerBad = 0;
   private float difficulté = 1;
 
 
@@ -54,6 +60,14 @@ public class Event_Manager : MonoBehaviour
   public GameObject screamer;
   private bool screaming;
 
+  [Header("pourcentage")] 
+  public float pourcentageFenêtre = 70;
+  public float pourcentagePorte = 30;
+  public float pourcentageGazinière = 60;
+  public float pourcentageTV;
+  
+  
+
 
 
   void Start()
@@ -62,6 +76,9 @@ public class Event_Manager : MonoBehaviour
         UIGameOver.SetActive(false);
         Time.timeScale = 1;
         Screamer.SetActive(false);
+        prochainDanger = Random.Range(prochainDangerMin, prochainDangerMin + prochainDangerArray);
+        prochainDangerBad = Random.Range(prochainDangerBadMin, prochainDangerBadMin + prochainDangerBadArray);
+
     }
 
 
@@ -122,19 +139,43 @@ public class Event_Manager : MonoBehaviour
         {
             ChoixEvent();
         }
+
+        if (timerProchainDangerBad < prochainDangerBad)
+        {
+            timerProchainDangerBad += Time.deltaTime * difficulté;
+        }
+        else
+        {
+            ChoixBadEvent();
+        }
     }
 
     void ChoixEvent()
     {
         timerProchainDanger = 0;
-
-        float randomNumber = Random.Range(1,80);
+        float randomNumber = Random.Range(1,101);
         
-        if (randomNumber < 20)
+        if (randomNumber < pourcentageGazinière)
+        {
+            gazinière.DepartGaziniere(gaziniereDuree);
+        }
+        else
+        {
+            TV.spriteActuel = 0;
+        }
+    }
+
+    void ChoixBadEvent()
+    {
+        timerProchainDangerBad = 0;
+
+        float randomNumber = Random.Range(1,101);
+        
+        if (randomNumber < pourcentagePorte)
         {
             porte.Ouverture();
         }
-        else if (randomNumber < 40)
+        else
         {
             numeroFenetre = Random.Range(1, 4);
             if (numeroFenetre == 1)
@@ -150,14 +191,7 @@ public class Event_Manager : MonoBehaviour
                 fenetre3.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
         }
-        else if (randomNumber < 60)
-        {
-            gazinière.DepartGaziniere(gaziniereDuree);
-        }
-        else
-        {
-            TV.spriteActuel = 0;
-        }
+        
     }
 
 
