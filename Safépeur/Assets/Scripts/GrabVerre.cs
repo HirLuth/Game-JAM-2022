@@ -16,11 +16,12 @@ public class GrabVerre : MonoBehaviour
     public KeyCode Space = KeyCode.Space;
     public int VerreFilling = 8;
     public float timerVerreFilling = 0;
+    public float timeToOneStep = 12;
     public FlacQuiTue flaque;
     public toilettes toilettesProg;
     public Event_Manager manager;
-    
-    
+
+
     [Header("Sprites")]
     public SpriteRenderer spToilettes;
     public SpriteRenderer spGouttes;
@@ -47,7 +48,7 @@ public class GrabVerre : MonoBehaviour
             manager.GameOver();
         }
 
-        if (timerVerreFilling > 5 && VerreGrab == false)
+        if (timerVerreFilling > timeToOneStep && VerreGrab == false)
         {
             VerreFilling += 1;
             timerVerreFilling = 0;

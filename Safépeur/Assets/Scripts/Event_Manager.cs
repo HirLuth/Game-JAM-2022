@@ -13,8 +13,8 @@ public class Event_Manager : MonoBehaviour
   public Porte porte;
   public TV TV;
   public Fenêtre fenetre;
-  public Fenêtre fenetre2;
-  public Fenêtre fenetre3;
+  public Fenêtre2 fenetre2;
+  public Fenêtre3 fenetre3;
   public GazinièreActivation gazinière;
 
   [Header("Prochain danger")]
@@ -39,8 +39,9 @@ public class Event_Manager : MonoBehaviour
 
   [Header("DifficultéFenêtre")] 
   public float dureeFenetre1 = 3f;
-  public float dureeFenetre2 = 9f;
+  public float dureeFenetre2 = 7.5f;
   public int numeroFenetre = 1;
+  public int secondNumeroFenetre = 2;
 
   [Header("difficultéGazinière")] 
   public float gaziniereDuree = 15f;
@@ -115,11 +116,11 @@ public class Event_Manager : MonoBehaviour
 
         if (fenetre.openingFenetre || fenetre2.openingFenetre || fenetre3.openingFenetre)
         {
-            if (numeroFenetre == 1)
+            if (numeroFenetre == 1 || secondNumeroFenetre == 1)
             {
                 fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
-            else if (numeroFenetre == 2)
+            else if (numeroFenetre == 2 || secondNumeroFenetre == 2)
             {
                 fenetre2.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
@@ -153,6 +154,7 @@ public class Event_Manager : MonoBehaviour
     void ChoixEvent()
     {
         timerProchainDanger = 0;
+        prochainDanger = Random.Range(prochainDangerMin, prochainDangerMin + prochainDangerArray);
         float randomNumber = Random.Range(1,101);
         
         if (randomNumber < pourcentageGazinière)
@@ -168,6 +170,7 @@ public class Event_Manager : MonoBehaviour
     void ChoixBadEvent()
     {
         timerProchainDangerBad = 0;
+        prochainDangerBad = Random.Range(prochainDangerBadMin, prochainDangerBadMin + prochainDangerBadArray);
 
         float randomNumber = Random.Range(1,101);
         
@@ -177,12 +180,28 @@ public class Event_Manager : MonoBehaviour
         }
         else
         {
-            numeroFenetre = Random.Range(1, 4);
-            if (numeroFenetre == 1)
+            // Pour la seconde fenêtre
+            if (fenetre.openingFenetre == true)
+            {
+                int retenue = numeroFenetre;
+                while (retenue == secondNumeroFenetre)
+                {
+                    secondNumeroFenetre = Random.Range(1, 4);
+                }
+            }
+            
+            // Si il n'y a que une fenêtre
+            else
+            {
+                numeroFenetre = Random.Range(1, 4);
+            }
+            
+            
+            if (numeroFenetre == 1 || secondNumeroFenetre == 1)
             {
                 fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }
-            else if (numeroFenetre == 2)
+            else if (numeroFenetre == 2 || secondNumeroFenetre == 2)
             {
                 fenetre2.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
             }

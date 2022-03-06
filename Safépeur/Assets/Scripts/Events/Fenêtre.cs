@@ -29,7 +29,9 @@ public class Fenêtre : MonoBehaviour
     public void OuvertureFenetre(float rideauxFin, float yeuxFin)
     {
         openingFenetre = true;
+        
         timerFenêtre += Time.deltaTime;
+        
 
         // Ca se ferme
         if (timerFenêtre < rideauxFin)
@@ -40,9 +42,9 @@ public class Fenêtre : MonoBehaviour
                 audioBool1 = false;
             }
             spriteRenderer.sprite = fenetreFermée;
-            Debug.Log(light.intensity);
             light.intensity = 0;
         }
+        
         // La c'est le danger
         else
         {
@@ -66,7 +68,10 @@ public class Fenêtre : MonoBehaviour
             light.intensity = 1;
             canDie = false;
             spriteRenderer.sprite = fenetreNormale;
+            
             timerFenêtre = 0;
+            
+
             openingFenetre = false;
         }
     }
