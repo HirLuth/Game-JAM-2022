@@ -32,6 +32,9 @@ public class GrabVerre : MonoBehaviour
     public Sprite gouttesSpriteSet;
     public Sprite gouttesSpriteUnset;
 
+    public AudioSource audioSource1;
+    private bool audioBool = true;
+
 
     void Update()
     {
@@ -91,6 +94,11 @@ public class GrabVerre : MonoBehaviour
             {
                 if(VerreGrab == true)
                 {
+                    if (audioBool == true)
+                    {
+                        audioSource1.Play();
+                        audioBool = false;
+                    }
                     VerreFilling = 0;
                     timerVerreFilling = 0;
                 }
@@ -98,6 +106,7 @@ public class GrabVerre : MonoBehaviour
         }
         else
         {
+            audioBool = true;
             spToilettes.sprite = toilettesSpriteUnset;
         }
 
@@ -109,5 +118,6 @@ public class GrabVerre : MonoBehaviour
         {
             spVerre.sprite = spritesNotOutlined[VerreFilling];
         }
+
     }
 }
