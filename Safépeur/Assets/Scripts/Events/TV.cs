@@ -127,7 +127,7 @@ public class TV : MonoBehaviour
             
             if (timerTV > limitTimerTV)
             {
-                manager.GameOver();
+                manager.GameOverTV();
             }
         }
         
@@ -146,7 +146,7 @@ public class TV : MonoBehaviour
                 timerTV += Time.deltaTime * 2;
                 if (limitTimerTV < timerTV || dontChange == true)
                 {
-                    manager.GameOver();
+                    manager.GameOverTV();
                 }
             }
 

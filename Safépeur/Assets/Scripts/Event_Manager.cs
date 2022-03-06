@@ -17,6 +17,7 @@ public class Event_Manager : MonoBehaviour
   public Fenêtre3 fenetre3;
   public GazinièreActivation gazinière;
 
+  
   [Header("Prochain danger")]
   public float prochainDanger;
   public float prochainDangerBad;
@@ -37,6 +38,7 @@ public class Event_Manager : MonoBehaviour
   public float TVLimite22 = 1;
   public float TVLimite222 = 0.75f;
 
+  
   [Header("DifficultéFenêtre")] 
   public float dureeFenetre1 = 3f;
   public float dureeFenetre2 = 7.5f;
@@ -44,6 +46,7 @@ public class Event_Manager : MonoBehaviour
   public int secondNumeroFenetre = 2;
   public float retenue2;
 
+  
   [Header("difficultéGazinière")] 
   public float gaziniereDuree = 15f;
 
@@ -60,7 +63,12 @@ public class Event_Manager : MonoBehaviour
   [Header("gameOver")] 
   public cameraShake cameraShake;
   public GameObject screamer;
+  public GameObject screamerTV;
+  public GameObject sceamerFire;
+  public GameObject screamerVerre;
   private bool screaming;
+  public GameObject lights;
+
 
   [Header("pourcentage")] 
   public float pourcentageFenêtre = 70;
@@ -187,11 +195,76 @@ public class Event_Manager : MonoBehaviour
         }
         
     }
+    
+    public void GameOverVerre()
+    {
+        timerScreamer += Time.deltaTime;
+        lights.SetActive(false);
 
+        if (timerScreamer < 2 && screaming == false)
+        {
+            screaming = true;
+            screamerVerre.SetActive(true);
+            StartCoroutine(cameraShake.Shake(2f, 0.3f));
+        }
+        else if (timerScreamer >= 2)
+        {
+            timerTemps.SetActive(false);
+            Screamer.SetActive(true);
+            Time.timeScale = 0;
+            textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+            UIGameOver.SetActive(true);
+        }
+    }
+
+
+    public void GameOverFeu()
+    {
+        timerScreamer += Time.deltaTime;
+        lights.SetActive(false);
+
+        if (timerScreamer < 2 && screaming == false)
+        {
+            screaming = true;
+            sceamerFire.SetActive(true);
+            StartCoroutine(cameraShake.Shake(2f, 0.3f));
+        }
+        else if (timerScreamer >= 2)
+        {
+            timerTemps.SetActive(false);
+            Screamer.SetActive(true);
+            Time.timeScale = 0;
+            textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+            UIGameOver.SetActive(true);
+        }
+    }
+
+    
+    public void GameOverTV()
+    {
+        timerScreamer += Time.deltaTime;
+        lights.SetActive(false);
+
+        if (timerScreamer < 2 && screaming == false)
+        {
+            screaming = true;
+            screamerTV.SetActive(true);
+            StartCoroutine(cameraShake.Shake(2f, 0.3f));
+        }
+        else if (timerScreamer >= 2)
+        {
+            timerTemps.SetActive(false);
+            Screamer.SetActive(true);
+            Time.timeScale = 0;
+            textGameOver.text = "You survived " + Mathf.Round(TimerDifficulty) + " seconds";
+            UIGameOver.SetActive(true);
+        }
+    }
 
     public void GameOver()
     {
         timerScreamer += Time.deltaTime;
+        lights.SetActive(false);
 
         if (timerScreamer < 2 && screaming == false)
         {
@@ -221,27 +294,6 @@ public class Event_Manager : MonoBehaviour
     {
         Application.Quit();
     }
-    
-    void Event_Porte()
-    {
-        
-    }
-    
-    void Event_Fenêtre()
-    {
-        
-    }
-    
-    void Event_Feu()
-    {
-        
-    }
-    
-    void Event_Télé()
-    {
-        
-    }
-    
     
     void Event_Fuite()
     {

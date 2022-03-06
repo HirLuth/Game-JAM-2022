@@ -27,7 +27,7 @@ public class FlacQuiTue : MonoBehaviour
 
             if (flacState >= numberOfStates)
             {
-                manager.GameOver();
+                manager.GameOverVerre();
                 
             }
         }

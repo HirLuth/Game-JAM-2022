@@ -45,7 +45,7 @@ public class GrabVerre : MonoBehaviour
         if (VerreFilling >= 7)
         {
             VerreFilling = 7;
-            manager.GameOver();
+            manager.GameOverVerre();
         }
 
         if (timerVerreFilling > timeToOneStep && VerreGrab == false)

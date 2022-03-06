@@ -80,7 +80,7 @@ public class GazinièreActivation : MonoBehaviour
 
         if (gazinièreState == numberOfStates + 1)
         {
-            em.GameOver();
+            em.GameOverFeu();
             gazinièreOn = false;
         }
         
