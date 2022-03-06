@@ -41,6 +41,10 @@ public class TV : MonoBehaviour
     public Color originelle;
     public Light2D light;
     public float variance = 0;
+
+    [Header("Sound")] 
+    public AudioSource audioSource1;
+    private bool audioBool = true;
     
     
     private void Update()
@@ -113,6 +117,13 @@ public class TV : MonoBehaviour
         // Quand la chaine affichée est le grézillement
         if (spriteActuel == 0)
         {
+            if (audioBool)
+            {
+                Debug.Log("bite");
+                audioSource1.Play();
+                audioBool = false;
+            }
+            
             timerTV += Time.deltaTime;
             
             if (timerTV > limitTimerTV)
@@ -125,7 +136,12 @@ public class TV : MonoBehaviour
         // Quand c'est pas le grésillement
         else if (spriteActuel >= 0)
         {
-
+            if (audioBool)
+            {
+                Debug.Log("bite");
+                audioSource1.Play();
+                audioBool = false;
+            }
             // Si c'est une des mauvaises chaînes
             if (spriteActuel < 4)
             {
@@ -139,6 +155,8 @@ public class TV : MonoBehaviour
             // Si c'est la chaine des télétubbies
             if (spriteActuel == 4 && timerTV > 0)
             {
+                audioBool = true;
+                audioSource1.Stop();
                 timerTV -= Time.deltaTime * 3 ;
                 dontChange = true;
             }
