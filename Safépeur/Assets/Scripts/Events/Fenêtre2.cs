@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,15 @@ public class Fenêtre2 : MonoBehaviour
     public AudioSource audioSource1;
     public bool audioBool1 = true;
     public bool audioBool2 = true;
+    public bool eventManager2;
+
+    private void Update()
+    {
+        if (eventManager2)
+        {
+            OuvertureFenetre(3f, 7.5f);
+        }
+    }
 
     public void OuvertureFenetre(float rideauxFin, float yeuxFin)
     {
@@ -67,6 +77,7 @@ public class Fenêtre2 : MonoBehaviour
             spriteRenderer.sprite = fenetreNormale;
             
             timerFenêtre = 0;
+            eventManager2 = false;
             
 
             openingFenetre = false;

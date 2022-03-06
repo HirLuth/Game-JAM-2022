@@ -42,6 +42,7 @@ public class Event_Manager : MonoBehaviour
   public float dureeFenetre2 = 7.5f;
   public int numeroFenetre = 1;
   public int secondNumeroFenetre = 2;
+  public float retenue2;
 
   [Header("difficultéGazinière")] 
   public float gaziniereDuree = 15f;
@@ -95,11 +96,11 @@ public class Event_Manager : MonoBehaviour
         // On fait évoluer la difficulté avec le temps 
         if (TimerDifficulty > 60)
         {
-            difficulté = 1.1f;
+            difficulté = 1.2f;
         }
         else if (TimerDifficulty > 120)
         {
-            difficulté = 1.2f;
+            difficulté = 1.4f;
         }
 
         
@@ -114,22 +115,6 @@ public class Event_Manager : MonoBehaviour
             gazinière.DepartGaziniere(gaziniereDuree);
         }
 
-        if (fenetre.openingFenetre || fenetre2.openingFenetre || fenetre3.openingFenetre)
-        {
-            if (numeroFenetre == 1 || secondNumeroFenetre == 1)
-            {
-                fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
-            }
-            else if (numeroFenetre == 2 || secondNumeroFenetre == 2)
-            {
-                fenetre2.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
-            }
-            else
-            {
-                fenetre3.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
-            }
-        }
-        
 
         // Plus la difficulté est haute, plus le timer va vite et donc plus les dangers arrivent rapidement
         if (timerProchainDanger < prochainDanger)
@@ -180,34 +165,24 @@ public class Event_Manager : MonoBehaviour
         }
         else
         {
-            // Pour la seconde fenêtre
-            if (fenetre.openingFenetre == true)
-            {
-                int retenue = numeroFenetre;
-                while (retenue == secondNumeroFenetre)
-                {
-                    secondNumeroFenetre = Random.Range(1, 4);
-                }
-            }
-            
-            // Si il n'y a que une fenêtre
-            else
+            while (retenue2 == numeroFenetre)
             {
                 numeroFenetre = Random.Range(1, 4);
             }
+            retenue2 = numeroFenetre;
             
             
-            if (numeroFenetre == 1 || secondNumeroFenetre == 1)
+            if (numeroFenetre == 1)
             {
-                fenetre.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+                fenetre.eventManager = true;
             }
-            else if (numeroFenetre == 2 || secondNumeroFenetre == 2)
+            else if (numeroFenetre == 2)
             {
-                fenetre2.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+                fenetre2.eventManager2 = true;
             }
             else
             {
-                fenetre3.OuvertureFenetre(dureeFenetre1, dureeFenetre2);
+                fenetre3.eventManager3 = true;
             }
         }
         

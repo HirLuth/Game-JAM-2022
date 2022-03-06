@@ -33,6 +33,7 @@ public class Porte : MonoBehaviour
         timerPorte += Time.deltaTime;
 
         float mouvement = Input.GetAxisRaw("Horizontal");
+        float mouvementVertical = Input.GetAxisRaw("Vertical");
 
 
         if (timerPorte >= tempsOuverture)
@@ -40,13 +41,14 @@ public class Porte : MonoBehaviour
             opens = true;
         }
         
-        if (timerPorte >= tempsOuverture && (mouvement > 0.01f || mouvement < -0.01f))
+        if (timerPorte >= tempsOuverture && (mouvement > 0.01f || mouvement < -0.01f || mouvementVertical > 0.01f || mouvementVertical < -0.01))
         {
             manager.GameOver();
         }
         
         else if (timerPorte >= (tempsOuverture + 2.5f))
         {
+            stopSon = false;
             opens = false;
             ouverturePorte = false;
             retenueFaite = false;

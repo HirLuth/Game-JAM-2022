@@ -20,7 +20,24 @@ public class Fenêtre3 : MonoBehaviour
     public AudioSource audioSource1;
     public bool audioBool1 = true;
     public bool audioBool2 = true;
+    public bool eventManager3;
 
+    public void Start()
+    {
+        retenue = light.color;
+    }
+    
+    
+    private void Update()
+    {
+        if (eventManager3)
+        {
+            OuvertureFenetre(3f, 7.5f);
+        }
+    }
+    
+    
+    
     public void OuvertureFenetre(float rideauxFin, float yeuxFin)
     {
         openingFenetre = true;
@@ -65,6 +82,7 @@ public class Fenêtre3 : MonoBehaviour
             spriteRenderer.sprite = fenetreNormale;
             
             timerFenêtre = 0;
+            eventManager3 = false;
             
 
             openingFenetre = false;
